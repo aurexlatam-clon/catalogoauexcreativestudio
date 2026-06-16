@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta — 10 Experiences</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --negro: #0A0A0A;
+    --oro: #C9A96E;
+    --oro-suave: #E8D5B0;
+    --crema: #F5F0E8;
+    --gris: #6B6560;
+    --linea: rgba(201,169,110,0.25);
+  }
+
+  body {
+    background: var(--negro);
+    color: var(--crema);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── PORTADA ── */
+  .portada {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 60px 64px;
+    border-bottom: 1px solid var(--linea);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .portada::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(201,169,110,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .agencia-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--oro);
+  }
+
+  .portada-centro {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 0 60px;
+  }
+
+  .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gris);
+    margin-bottom: 32px;
+  }
+
+  .titulo-portada {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 300;
+    line-height: 1.0;
+    color: var(--crema);
+    max-width: 700px;
+    margin: 0 auto 40px;
+  }
+
+  .titulo-portada em {
+    font-style: italic;
+    color: var(--oro);
+  }
+
+  .subtitulo-portada {
+    font-size: 15px;
+    color: var(--gris);
+    max-width: 480px;
+    line-height: 1.8;
+    margin: 0 auto;
+  }
+
+  .portada-meta {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--linea);
+    width: 100%;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .meta-item label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gris);
+    margin-bottom: 6px;
+  }
+
+  .meta-item span {
+    font-size: 14px;
+    color: var(--crema);
+  }
+
+  .precio-portada {
+    text-align: center;
+  }
+
+  .precio-portada label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gris);
+    margin-bottom: 6px;
+  }
+
+  .precio-portada .monto {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--oro);
+    line-height: 1;
+  }
+
+  .precio-portada .moneda {
+    font-size: 14px;
+    color: var(--gris);
+    margin-top: 4px;
+  }
+
+  /* ── SECCIONES ── */
+  .seccion {
+    padding: 80px 64px;
+    border-bottom: 1px solid var(--linea);
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .seccion-completa {
+    padding: 80px 64px;
+    border-bottom: 1px solid var(--linea);
+  }
+
+  .seccion-header {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+
+  .seccion-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--oro);
+    flex-shrink: 0;
+  }
+
+  .seccion-titulo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--crema);
+    line-height: 1.2;
+  }
+
+  /* ── DIAGNÓSTICO ── */
+  .diagnostico-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--linea);
+    margin-bottom: 48px;
+  }
+
+  .diag-celda {
+    background: var(--negro);
+    padding: 32px;
+  }
+
+  .diag-celda.destacada {
+    background: rgba(201,169,110,0.05);
+  }
+
+  .diag-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gris);
+    margin-bottom: 12px;
+  }
+
+  .diag-valor {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-weight: 300;
+    color: var(--oro);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .diag-desc {
+    font-size: 13px;
+    color: var(--gris);
+    line-height: 1.6;
+  }
+
+  .insight-box {
+    border: 1px solid var(--linea);
+    border-left: 3px solid var(--oro);
+    padding: 28px 32px;
+    margin-top: 8px;
+  }
+
+  .insight-box p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--crema);
+    line-height: 1.6;
+  }
+
+  /* ── FLUJO ── */
+  .flujo-wrap {
+    position: relative;
+  }
+
+  .flujo-linea {
+    position: absolute;
+    left: 20px;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: var(--linea);
+  }
+
+  .flujo-item {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 32px;
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .flujo-dot {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--oro);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--oro);
+    background: var(--negro);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .flujo-contenido {}
+
+  .flujo-tag {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--oro);
+    border: 1px solid var(--linea);
+    padding: 4px 10px;
+    margin-bottom: 12px;
+  }
+
+  .flujo-nombre {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 300;
+    color: var(--crema);
+    margin-bottom: 8px;
+  }
+
+  .flujo-desc {
+    font-size: 14px;
+    color: var(--gris);
+    line-height: 1.8;
+    margin-bottom: 20px;
+    max-width: 560px;
+  }
+
+  .flujo-specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .spec-chip {
+    font-size: 11px;
+    color: var(--crema);
+    background: rgba(201,169,110,0.08);
+    border: 1px solid var(--linea);
+    padding: 5px 12px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── DESGLOSE ── */
+  .entregable-item {
+    border-bottom: 1px solid var(--linea);
+    padding: 32px 0;
+  }
+
+  .entregable-item:last-child {
+    border-bottom: none;
+  }
+
+  .entregable-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 16px;
+    gap: 24px;
+  }
+
+  .entregable-nombre {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--crema);
+  }
+
+  .entregable-valor {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--oro);
+    flex-shrink: 0;
+  }
+
+  .entregable-lista {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .entregable-lista li {
+    font-size: 13px;
+    color: var(--gris);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .entregable-lista li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--oro);
+    font-size: 11px;
+  }
+
+  /* ── ROI ── */
+  .roi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--linea);
+    margin-bottom: 40px;
+  }
+
+  .roi-celda {
+    background: var(--negro);
+    padding: 40px 32px;
+    text-align: center;
+  }
+
+  .roi-celda.highlight {
+    background: rgba(201,169,110,0.06);
+  }
+
+  .roi-escenario {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gris);
+    margin-bottom: 20px;
+  }
+
+  .roi-numero {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .roi-numero.rojo { color: #C0392B; }
+  .roi-numero.amarillo { color: var(--oro); }
+  .roi-numero.verde { color: #7EC8A4; }
+
+  .roi-desc {
+    font-size: 12px;
+    color: var(--gris);
+    line-height: 1.6;
+  }
+
+  .roi-nota {
+    font-size: 13px;
+    color: var(--gris);
+    line-height: 1.8;
+    border-left: 2px solid var(--oro);
+    padding-left: 20px;
+  }
+
+  .roi-nota strong {
+    color: var(--crema);
+    font-weight: 400;
+  }
+
+  /* ── TOTAL ── */
+  .total-wrap {
+    background: rgba(201,169,110,0.04);
+    border: 1px solid var(--linea);
+    padding: 60px;
+    text-align: center;
+  }
+
+  .total-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gris);
+    margin-bottom: 24px;
+  }
+
+  .total-monto {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 80px;
+    font-weight: 300;
+    color: var(--oro);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .total-usd {
+    font-size: 13px;
+    color: var(--gris);
+    letter-spacing: 0.1em;
+    margin-bottom: 40px;
+  }
+
+  .total-incluye {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .incluye-item {
+    font-size: 12px;
+    color: var(--gris);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .incluye-item::before {
+    content: '✦';
+    color: var(--oro);
+    font-size: 8px;
+  }
+
+  .total-tiempo {
+    font-size: 13px;
+    color: var(--gris);
+    border-top: 1px solid var(--linea);
+    padding-top: 32px;
+  }
+
+  .total-tiempo span {
+    color: var(--crema);
+  }
+
+  /* ── CONDICIONES ── */
+  .cond-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .cond-item label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--oro);
+    margin-bottom: 10px;
+  }
+
+  .cond-item p {
+    font-size: 14px;
+    color: var(--gris);
+    line-height: 1.7;
+  }
+
+  /* ── CIERRE ── */
+  .cierre {
+    padding: 80px 64px;
+    text-align: center;
+  }
+
+  .cierre-frase {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--crema);
+    max-width: 600px;
+    margin: 0 auto 48px;
+    line-height: 1.4;
+  }
+
+  .cierre-firma {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gris);
+  }
+
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--oro);
+    margin: 0 auto 24px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .portada { padding: 40px 28px; }
+    .seccion { padding: 60px 28px; }
+    .seccion-completa { padding: 60px 28px; }
+    .diagnostico-grid { grid-template-columns: 1fr; }
+    .roi-grid { grid-template-columns: 1fr; }
+    .cond-grid { grid-template-columns: 1fr; }
+    .total-wrap { padding: 40px 28px; }
+    .total-monto { font-size: 56px; }
+    .cierre { padding: 60px 28px; }
+    .portada-meta { flex-direction: column; gap: 28px; }
+    .precio-portada { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PORTADA -->
+<div class="portada">
+  <div class="agencia-tag">AUREX Creative Studio — Propuesta Confidencial</div>
+
+  <div class="portada-centro">
+    <p class="eyebrow">Sistema de Captación Digital · Junio 2026</p>
+    <h1 class="titulo-portada">Un sistema que<br>convierte <em>deseo</em><br>en reservas.</h1>
+    <div style="font-family:'Cormorant Garamond',serif; font-size:clamp(36px,5vw,64px); font-weight:300; color:var(--oro); letter-spacing:0.05em; margin-bottom:24px; margin-top:-8px;">10 Experiences</div>
+    <p class="subtitulo-portada">Propuesta de producción cinematográfica con IA y estrategia de embudo digital para 10 Experiences, Cozumel.</p>
+  </div>
+
+  <div class="portada-meta">
+    <div class="meta-item">
+      <label>Preparado para</label>
+      <span>10 Experiences · Cozumel, México</span>
+    </div>
+    <div class="meta-item">
+      <label>Fecha</label>
+      <span>Junio 2026</span>
+    </div>
+    <div class="precio-portada">
+      <label>Inversión total</label>
+      <div class="monto">$2,100</div>
+      <div class="moneda">USD · Pago único</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- DIAGNÓSTICO -->
+<div class="seccion-completa">
+  <div style="max-width:900px; margin:0 auto;">
+    <div class="seccion-header">
+      <span class="seccion-num">01</span>
+      <h2 class="seccion-titulo">El diagnóstico — lo que dicen sus números hoy</h2>
+    </div>
+
+    <div class="diagnostico-grid">
+      <div class="diag-celda">
+        <div class="diag-label">Impresiones mensuales</div>
+        <div class="diag-valor">15.2K</div>
+        <div class="diag-desc">Su anuncio se está viendo. El problema no es alcance.</div>
+      </div>
+      <div class="diag-celda">
+        <div class="diag-label">Clics recibidos</div>
+        <div class="diag-valor">589</div>
+        <div class="diag-desc">Tasa de clic del 3.9% — dentro del promedio del mercado.</div>
+      </div>
+      <div class="diag-celda">
+        <div class="diag-label">Canales activos actualmente</div>
+        <div class="diag-valor" style="font-size:26px;">Google Ads</div>
+        <div class="diag-desc">Solo búsqueda. Sin presencia activa en Meta, Instagram ni TikTok.</div>
+      </div>
+      <div class="diag-celda destacada">
+        <div class="diag-label">La oportunidad detectada</div>
+        <div class="diag-valor" style="font-size:22px; color: var(--crema);">Sin medición<br>de conversión</div>
+        <div class="diag-desc">Sin un creativo que genere deseo, no es posible saber cuántos de esos clics se convierten en reservas reales.</div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <p>"No les falta inversión en publicidad. Les falta un creativo que convierta la curiosidad en deseo — y el deseo en una reserva de $180 USD por persona."</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- EL SISTEMA -->
+<div class="seccion-completa">
+  <div style="max-width:900px; margin:0 auto;">
+    <div class="seccion-header">
+      <span class="seccion-num">02</span>
+      <h2 class="seccion-titulo">El sistema — 4 piezas, un solo viaje del cliente</h2>
+    </div>
+
+    <div class="flujo-wrap">
+      <div class="flujo-linea"></div>
+
+      <!-- VIDEO 1 -->
+      <div class="flujo-item">
+        <div class="flujo-dot">1</div>
+        <div class="flujo-contenido">
+          <div class="flujo-tag">El Gancho · 15–20 segundos</div>
+          <div class="flujo-nombre">Interrupción cinematográfica</div>
+          <div class="flujo-desc">
+            Un turista en su cuarto de hotel, la noche antes de llegar a Cozumel, scrollea sin rumbo. En menos de tres segundos, algo interrumpe su inercia. Una imagen que no parece un restaurante — parece otro mundo. Una frase que abre una pregunta. Un corte que deja con ganas de más.<br><br>
+            Su único trabajo: generar ese clic. Nada más. No vender, no explicar — <em>despertar.</em><br><br>
+            <span style="font-size:12px; color:var(--oro); letter-spacing:0.05em;">✦ Concepto ajustable — la narrativa se define en conjunto con el cliente antes de producción.</span>
+          </div>
+          <div class="flujo-specs">
+            <span class="spec-chip">Producción IA cinematográfica</span>
+            <span class="spec-chip">Copywriting estratégico</span>
+            <span class="spec-chip">Google Ads</span>
+            <span class="spec-chip">Instagram Ads</span>
+            <span class="spec-chip">Facebook Ads</span>
+            <span class="spec-chip">Subtítulos animados</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIDEO 2A -->
+      <div class="flujo-item">
+        <div class="flujo-dot">2</div>
+        <div class="flujo-contenido">
+          <div class="flujo-tag">Funnel — Primera pieza · 30–45 segundos</div>
+          <div class="flujo-nombre">La evocación — lo que vas a sentir</div>
+          <div class="flujo-desc">
+            Ya hicieron clic. Llegaron a la landing page con intención. Este video no documenta la experiencia — la evoca. Imágenes cinematográficas con IA que recrean la atmósfera: la mesa, la luz cálida, los colores de México, el mar de fondo. Material real de la experiencia integrado con edición de nivel cinematográfico.<br><br>
+            El espectador no ve un restaurante. Se ve a sí mismo ahí adentro.<br><br>
+            <span style="font-size:12px; color:var(--oro); letter-spacing:0.05em;">✦ La selección de escenas e imágenes se define en briefing con el cliente.</span>
+          </div>
+          <div class="flujo-specs">
+            <span class="spec-chip">Producción IA + material del cliente</span>
+            <span class="spec-chip">Color grading cinematográfico</span>
+            <span class="spec-chip">Música original licenciada</span>
+            <span class="spec-chip">Storytelling narrativo</span>
+            <span class="spec-chip">Landing page</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIDEO 2B -->
+      <div class="flujo-item">
+        <div class="flujo-dot">3</div>
+        <div class="flujo-contenido">
+          <div class="flujo-tag">Funnel — Segunda pieza · 30 segundos</div>
+          <div class="flujo-nombre">El cierre emocional — la decisión</div>
+          <div class="flujo-desc">
+            El cliente ya quiere ir. Este video empuja al último paso. Condensa los momentos más poderosos de la experiencia — la reacción real, el brindis, el instante en que alguien prueba algo que no esperaba. Termina con un CTA claro y directo.<br><br>
+            No vende características. Vende el recuerdo que van a tener.
+          </div>
+          <div class="flujo-specs">
+            <span class="spec-chip">Edición de alto impacto</span>
+            <span class="spec-chip">CTA cinematográfico</span>
+            <span class="spec-chip">Motion graphics</span>
+            <span class="spec-chip">Landing page</span>
+            <span class="spec-chip">Adaptable a Stories</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIDEO 3 -->
+      <div class="flujo-item">
+        <div class="flujo-dot">4</div>
+        <div class="flujo-contenido">
+          <div class="flujo-tag">Testimonio Cinematográfico · 30 segundos</div>
+          <div class="flujo-nombre">La prueba social que no se ve venir</div>
+          <div class="flujo-desc">
+            No es alguien hablando a la cámara. Es texto real de sus mejores reseñas — TripAdvisor, OpenTable — convertido en tipografía animada sobre imágenes IA evocadoras. Frases cortas, cinematográficas, que impactan más que cualquier video testimonial convencional.<br><br>
+            Va a quienes ya vieron el gancho pero no reservaron. Es el empujón final.
+          </div>
+          <div class="flujo-specs">
+            <span class="spec-chip">Reseñas reales animadas</span>
+            <span class="spec-chip">Tipografía cinematográfica</span>
+            <span class="spec-chip">Instagram Retargeting</span>
+            <span class="spec-chip">Facebook Retargeting</span>
+            <span class="spec-chip">TripAdvisor</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- DESGLOSE DE ENTREGABLES -->
+<div class="seccion-completa">
+  <div style="max-width:900px; margin:0 auto;">
+    <div class="seccion-header">
+      <span class="seccion-num">03</span>
+      <h2 class="seccion-titulo">Qué incluye cada pieza</h2>
+    </div>
+
+    <div class="entregable-item">
+      <div class="entregable-header">
+        <div class="entregable-nombre">Estrategia narrativa y copywriting</div>
+        <div class="entregable-valor">Incluido</div>
+      </div>
+      <ul class="entregable-lista">
+        <li>Análisis del perfil del turista objetivo y su momento de decisión</li>
+        <li>Arquitectura narrativa de las 4 piezas como sistema coherente</li>
+        <li>Copywriting de cada video: hook, narración, CTA</li>
+        <li>Guion cinematográfico con instrucciones de producción por escena</li>
+        <li>Definición de tono, ritmo y emoción objetivo por pieza</li>
+        <li>Toda la narrativa respeta y se integra a la identidad y el storytelling propio de 10 Experiences</li>
+      </ul>
+    </div>
+
+    <div class="entregable-item">
+      <div class="entregable-header">
+        <div class="entregable-nombre">Producción cinematográfica con IA</div>
+        <div class="entregable-valor">Incluido</div>
+      </div>
+      <ul class="entregable-lista">
+        <li>Generación de imágenes y escenas con IA de nivel cinematográfico</li>
+        <li>Integración de material real del cliente con producción IA</li>
+        <li>Color grading y etalonaje alineado a la identidad visual de la marca del cliente</li>
+        <li>Música licenciada seleccionada por emoción objetivo de cada video</li>
+        <li>Subtítulos animados optimizados para visualización sin sonido</li>
+        <li>Motion graphics y transiciones de nivel agencia</li>
+      </ul>
+    </div>
+
+    <div class="entregable-item">
+      <div class="entregable-header">
+        <div class="entregable-nombre">Formato de entrega</div>
+        <div class="entregable-valor">Incluido</div>
+      </div>
+      <ul class="entregable-lista">
+        <li>Todos los videos entregados en formato vertical 9:16 — optimizado para Instagram, Facebook, Stories y uso en landing page</li>
+        <li>Archivos en alta resolución listos para publicación inmediata</li>
+        <li>Formato horizontal 16:9 disponible como servicio adicional ($150 USD por video) para campañas en Google Display o YouTube</li>
+      </ul>
+      <p style="font-size:12px; color:var(--oro); margin-top:16px; letter-spacing:0.03em;">✦ Nota importante: AUREX Creative Studio es exclusivamente productor del material audiovisual. La publicación, gestión de campañas, segmentación de audiencias y administración de redes sociales no están incluidas en este servicio y son responsabilidad del cliente o su agencia de medios.</p>
+    </div>
+
+    <div class="entregable-item">
+      <div class="entregable-header">
+        <div class="entregable-nombre">Entrega y revisiones</div>
+        <div class="entregable-valor">Incluido</div>
+      </div>
+      <ul class="entregable-lista">
+        <li>Una ronda de revisiones por video antes de la entrega final (máximo 3 ajustes por pieza)</li>
+        <li>Revisiones adicionales fuera de este límite se cotizan a $80 USD por ronda</li>
+        <li>Entrega de archivos organizados y etiquetados por pieza con instrucciones de uso por canal</li>
+        <li>Sesión de briefing inicial para alinear concepto, tono y expectativas antes de producción</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ROI -->
+<div class="seccion-completa">
+  <div style="max-width:900px; margin:0 auto;">
+    <div class="seccion-header">
+      <span class="seccion-num">04</span>
+      <h2 class="seccion-titulo">El retorno — lo que cambia con este sistema</h2>
+    </div>
+
+    <div class="roi-grid">
+      <div class="roi-celda">
+        <div class="roi-escenario">Escenario base · conservador</div>
+        <div class="roi-numero amarillo">2%</div>
+        <div class="roi-desc">conversión proyectada<br><br>Con creativo cinematográfico<br>vs. imágenes estáticas actuales<br><br>589 clics → ~12 reservas<br>$4,320 USD ingreso<br>$1,840 USD invertidos<br><br><strong style="color: var(--oro);">ROI positivo claro</strong></div>
+      </div>
+      <div class="roi-celda highlight">
+        <div class="roi-escenario">Escenario realista · con retargeting</div>
+        <div class="roi-numero verde">4%</div>
+        <div class="roi-desc">conversión alcanzable<br><br>Sistema completo de 4 piezas<br>activando los 3 canales<br><br>589 clics → ~24 reservas<br>$8,640 USD ingreso<br>$1,840 USD invertidos<br><br><strong style="color:#7EC8A4;">4x su inversión en ads</strong></div>
+      </div>
+      <div class="roi-celda">
+        <div class="roi-escenario">Punto de equilibrio</div>
+        <div class="roi-numero" style="color:var(--crema); font-size:36px;">6 reservas</div>
+        <div class="roi-desc">adicionales al mes<br><br>Es todo lo que se necesita para recuperar la inversión completa del proyecto<br><br>= pasar de su tasa actual<br>a solo 1% más de conversión<br><br><strong style="color:var(--crema);">Recuperación en mes 1</strong></div>
+      </div>
+    </div>
+
+    <div class="roi-nota">
+      Para recuperar la inversión en este sistema, <strong>solo necesitan 6 reservas adicionales al mes.</strong> Con su ticket promedio de $360 USD por pareja, eso representa pasar de 1% a 2% de conversión — no al 5%, no al 10%. <strong>Solo 2%.</strong> Con el mismo presupuesto de Google Ads que ya tienen.
+    </div>
+  </div>
+</div>
+
+
+<!-- INVERSIÓN TOTAL -->
+<div class="seccion-completa">
+  <div style="max-width:900px; margin:0 auto;">
+    <div class="seccion-header">
+      <span class="seccion-num">05</span>
+      <h2 class="seccion-titulo">La inversión</h2>
+    </div>
+
+    <div class="total-wrap">
+      <div class="total-label">Inversión total del proyecto</div>
+      <div class="total-monto">$2,100</div>
+      <div class="total-usd">USD · Pago único · Precio todo incluido</div>
+
+      <div class="total-incluye">
+        <div class="incluye-item">4 videos cinematográficos</div>
+        <div class="incluye-item">Estrategia narrativa completa</div>
+        <div class="incluye-item">Copywriting de cada pieza</div>
+        <div class="incluye-item">Guiones cinematográficos</div>
+        <div class="incluye-item">Producción IA de alto nivel</div>
+        <div class="incluye-item">Color grading alineado a marca</div>
+        <div class="incluye-item">Música licenciada</div>
+        <div class="incluye-item">Formato vertical 9:16 incluido</div>
+        <div class="incluye-item">Ronda de revisiones incluida</div>
+        <div class="incluye-item">Sesión de briefing inicial</div>
+      </div>
+
+      <div style="border-top:1px solid var(--linea); border-bottom:1px solid var(--linea); padding:32px 0; margin:32px 0; text-align:left; max-width:480px; margin-left:auto; margin-right:auto;">
+        <div style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gris); margin-bottom:20px;">Valor referencial de mercado</div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; justify-content:space-between; font-size:13px; color:var(--gris);"><span>Estrategia narrativa y guiones</span><span>$460 USD</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:13px; color:var(--gris);"><span>Video 1 — El Gancho</span><span>$510 USD</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:13px; color:var(--gris);"><span>Videos 2A y 2B — Funnel completo</span><span>$960 USD</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:13px; color:var(--gris);"><span>Video 3 — Testimonio cinematográfico</span><span>$460 USD</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:13px; color:var(--gris);"><span>Briefing, revisiones y entrega</span><span>$220 USD</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:14px; color:var(--crema); border-top:1px solid var(--linea); padding-top:12px; margin-top:4px;"><span>Valor total de mercado</span><span style="text-decoration:line-through; color:var(--gris);">$2,610 USD</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:15px; color:var(--oro);"><span>Inversión paquete proyecto</span><span>$2,100 USD</span></div>
+        </div>
+      </div>
+
+      <div class="total-tiempo">
+        Tiempo de entrega estimado: <span>15–21 días hábiles</span> · 
+        Para iniciar se requiere <span>50% de anticipo ($1,050 USD)</span> y entrega del material existente del cliente.
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- CONDICIONES -->
+<div class="seccion-completa">
+  <div style="max-width:900px; margin:0 auto;">
+    <div class="seccion-header">
+      <span class="seccion-num">06</span>
+      <h2 class="seccion-titulo">Condiciones y proceso</h2>
+    </div>
+
+    <div class="cond-grid">
+      <div class="cond-item">
+        <label>Forma de pago</label>
+        <p>50% al inicio del proyecto ($1,050 USD) y 50% a la entrega de los archivos finales ($1,050 USD). Transferencia bancaria o plataforma digital acordada.</p>
+      </div>
+      <div class="cond-item">
+        <label>Material requerido del cliente</label>
+        <p>Videos y fotografías existentes de la experiencia, acceso a reseñas destacadas, logotipo en alta resolución y paleta de colores de marca.</p>
+      </div>
+      <div class="cond-item">
+        <label>Revisiones incluidas</label>
+        <p>Una ronda de revisiones por video antes de la entrega final. Cambios adicionales se cotizan por separado.</p>
+      </div>
+      <div class="cond-item">
+        <label>Derechos y propiedad</label>
+        <p>Al completar el pago total, todos los archivos finales son propiedad exclusiva de 10 Experiences, libres para uso comercial ilimitado.</p>
+      </div>
+      <div class="cond-item">
+        <label>Vigencia de la propuesta</label>
+        <p>Esta propuesta tiene validez de 15 días naturales a partir de la fecha de emisión.</p>
+      </div>
+      <div class="cond-item">
+        <label>Inicio del proyecto</label>
+        <p>El proyecto inicia dentro de los 5 días hábiles posteriores a la confirmación y pago del anticipo.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- CIERRE -->
+<div class="cierre">
+  <div class="divider"></div>
+  <p class="cierre-frase">"Su experiencia ya es extraordinaria. Solo necesita ser vista antes de que el turista pise Cozumel."</p>
+  <div class="cierre-firma">AUREX Creative Studio · 2026</div>
+</div>
+
+</body>
+</html>
